@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SimplySaid (In development)
 
-## Getting Started
+## Purpose
 
-First, run the development server:
+SimplySaid is a platform for people to share and read simple explanation of any complicated topics they find hard to understand.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Technologies used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js for full-stack frame work.
+- MongoDB for database.
+- NextAuth module for user authentication
+- TailwindCSS for styling
+- ManTine as a component library.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How to use
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Users can check out the site
+- Users can search a complicated topic they want to answer or understand.
+- After login, Users can post their own explanation of a particular topic.
+- If users find a post useful, they can upvote the post.
+- Users can filter posts by subject to find the post users want.
 
-## Learn More
+## Contribution
 
-To learn more about Next.js, take a look at the following resources:
+- This is my personal project. Any contribution is welcome.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project use [MIT](https://www.mit.edu/~amini/LICENSE.md) license.
