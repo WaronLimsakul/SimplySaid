@@ -1,11 +1,9 @@
-import { connectDB, createPostSchema } from "@/lib/mongoosedb";
+import { db } from "@/lib/mongodb";
+
+const users = db.collection("users");
 
 export async function GET() {
-  const connect = await connectDB();
-  return Response.json(connect);
-}
-export async function POST() {
-  const result = await createPostSchema();
-  console.log(result);
-  return Response.json({ message: "ok" });
+    // .find() will return only cursor. We need to use .toArray() + await to fetch array.
+    const allUsers = await users.find().toArray();
+    return Response.json(allUsers);
 }

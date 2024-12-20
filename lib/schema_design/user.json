@@ -1,0 +1,16 @@
+{
+    "username": "John",
+    "email": "JJohn@mail.com",
+    "passwordHash": "12312412414123",
+    "votes": [
+        {
+            "postId": ObjectId("323523a75745b"),
+            "voteValue": 1
+        }
+    ],
+    "posts": [
+        ObjectId("323523a75745b"),
+        ObjectId("553523a75745b"),
+        ObjectId("375398")
+    ]
+}
