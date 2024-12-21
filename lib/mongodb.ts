@@ -1,6 +1,4 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
-import dotenv from "dotenv";
-dotenv.config();
 
 if (!process.env.MONGO_URI) throw new Error("No connection string");
 const uri: string = process.env.MONGO_URI;

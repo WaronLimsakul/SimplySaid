@@ -8,7 +8,7 @@ SimplySaid is a platform for people to share and read simple explanation of any 
 
 - Next.js for full-stack frame work.
 - MongoDB for database.
-- NextAuth module for user authentication
+- Auth.js module for user authentication
 - TailwindCSS for styling
 - ManTine as a component library.
 
