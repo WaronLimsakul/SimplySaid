@@ -1,0 +1,9 @@
+{
+    "id": "string",
+    "object": "string",
+    "tags": "string[]",
+    "owner_id": "string",
+    "content": "string",
+    "upvote": "number",
+    "downvotes": "number"
+}
