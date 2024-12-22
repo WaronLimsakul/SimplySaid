@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 
-type User = {
+// from user type
+type usert = {
   id: null | string | ObjectId;
   name: string;
   email: string;
@@ -10,4 +11,4 @@ type User = {
   votes: { post_id: string | ObjectId[]; val: 1 | -1 }[] | null;
 };
 
-export default User;
+export default usert;

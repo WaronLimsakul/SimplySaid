@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 
-type Post = {
+// from post type
+type postt = {
   id: null | string | ObjectId;
   object: string;
   owner_id: string | ObjectId;
@@ -10,4 +11,4 @@ type Post = {
   downvotes: number;
 };
 
-export default Post;
+export default postt;
