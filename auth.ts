@@ -6,16 +6,17 @@ import { client } from "./lib/mongodb";
 
 // if I don't set the options, adapter will create another db name test in my cluster
 const mongoAdapter_opts: MongoDBAdapterOptions = {
-  collections: {
-    Accounts: "accounts",
-    Sessions: "sessions",
-    Users: "users",
-  },
-  databaseName: "simply",
+    collections: {
+        Accounts: "accounts",
+        Sessions: "sessions",
+        Users: "users",
+    },
+    databaseName: "simply",
 };
 
-// create every route handlers function but passing options to NextAuth()
+// create every route handlers function but passing options to NextAuth().
+// If user sign in with one provider --> They can't sign in with another provider with the same email.
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: MongoDBAdapter(client, mongoAdapter_opts),
-  providers: [GitHub, Google],
+    adapter: MongoDBAdapter(client, mongoAdapter_opts),
+    providers: [GitHub, Google],
 });
