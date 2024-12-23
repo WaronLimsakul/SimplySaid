@@ -10,11 +10,8 @@ export async function GET(req: NextRequest) {
     // create URL object = easy to get params query.
     const url = new URL(req.url);
     const search_params = url.searchParams;
-    console.log("search_params:", search_params);
     let filter;
     const tags = search_params.getAll("tags");
-    console.log("tags:", tags);
-    console.log("typeof tags:", typeof tags);
 
     // find ONE post by its id, first priority
     if (search_params.has("post_id")) {
