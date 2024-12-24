@@ -1,10 +1,10 @@
 "use client";
 export default function Home() {
     const Postman = async () => {
-        const result = await fetch(
-            "http://localhost:3000/api/user/67673ae76168b80a5cb198e5",
-            { method: "PUT", body: JSON.stringify({ name: "WARON" }) },
-        );
+        const result = await fetch("http://localhost:3000/api/user/vote", {
+            method: "POST",
+            body: JSON.stringify({ post_id: "676880224da60d0a2ffae4ff", val: 1 }),
+        });
         console.log(result);
         return;
     };
