@@ -1,9 +1,10 @@
 import { db } from "@/lib/mongodb";
+import authorize_session from "@/utils/check_authenticate";
 import { ObjectId } from "mongodb";
 import { NextRequest } from "next/server";
-import { useId } from "react";
 
 const users_coll = db.collection("users");
+const sessions_coll = db.collection("sessions");
 
 // have to pass in req: Request before params to actually access params.
 export async function GET(
@@ -30,23 +31,12 @@ export async function PUT(
 ) {
     const user_id: string = (await params).user_id;
 
-    const _parsed: Map<string, { name: string; value: string }> =
-        req.cookies["_parsed"];
-    if (_parsed.size === 0)
-        return new Response("User not logged in", { status: 401 });
+    const authorized_result = await authorize_session(req);
+    if (authorized_result instanceof Response) return authorized_result;
 
-    const session_token_obj = _parsed.get("authjs.session-token");
-    if (!session_token_obj)
-        return new Response("Error, no session token found", { status: 500 });
-
-    const sess_token: string = session_token_obj.value;
-
-    const session_owner = await users_coll.findOne(
-        { sessionToken: sess_token },
-        { projection: { userId: 1 } },
-    );
+    const userId = authorized_result;
     // user_id is from params, check if it's the session owner.
-    if (!session_owner || session_owner.userId != user_id)
+    if (userId != user_id)
         return new Response("No user found or user is not owner of the account", {
             status: 401,
         });
