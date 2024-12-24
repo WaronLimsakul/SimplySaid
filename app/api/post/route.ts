@@ -4,23 +4,25 @@ import { NextRequest } from "next/server";
 
 const posts_coll = db.collection("posts");
 
-// can get posts by user_id, post_id, a tag, object, (potentially) title
+// can get posts by user_id, post_id, tags, object.
 // (Next.js GET method strip the body out, so we use query params instead.)
 export async function GET(req: NextRequest) {
     // create URL object = easy to get params query.
     const url = new URL(req.url);
     const search_params = url.searchParams;
-    let filter;
     const tags = search_params.getAll("tags");
 
+    let filter;
     // find ONE post by its id, first priority
     if (search_params.has("post_id")) {
         const result = await posts_coll.findOne({
             _id: new ObjectId(search_params.get("post_id")),
         });
         return Response.json(result);
+        // next priority is the object.
     } else if (search_params.has("object"))
         filter = { object: search_params.get("object") };
+    // by user
     else if (search_params.has("user_id"))
         filter = { user_id: search_params.get("user_id") };
     // just contain all tags we want, don't care other tags or order.
