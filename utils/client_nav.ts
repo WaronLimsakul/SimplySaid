@@ -1,0 +1,7 @@
+"use server";
+
+import { redirect } from "next/navigation";
+
+export async function navigate(searchBy: string, query: string) {
+  redirect(`${process.env.CLIENT_URI}?${searchBy}=${query}`);
+}
