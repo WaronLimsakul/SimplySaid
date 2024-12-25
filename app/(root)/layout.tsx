@@ -1,10 +1,10 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-    return (
-        <main className="font-sans">
-            <Navbar />
-            {children}
-        </main>
-    );
+  return (
+    <main>
+      <Navbar />
+      {children}
+    </main>
+  );
 }

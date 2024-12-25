@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { auth, signIn, signOut } from "@/auth";
 import { Session } from "next-auth";
+import SearchBar from "./SearchBar";
 
 // note that
 // 1. in src, you can add a file in pulic/ then just simply add /filename.png like that.
@@ -13,17 +14,18 @@ const Navbar = async () => {
   if (session) console.log(session);
 
   return (
-    <header className="px-5 py-3 bg-white shodow-sm font-sans">
+    <header className="px-5 py-3 bg-primary shadow">
       <nav className="flex justify-between items-center">
         <Link href="/">
           <Image
-            src="/SimplySaid_logo_2.6.png"
+            src="/SimplySaid_logo_nav_size.png"
             alt="logo"
             width={144}
-            height={30}
+            height={5}
           />
         </Link>
-        <div className="flex items-center gap-5 text-orange-600">
+        <SearchBar />
+        <div className="flex items-center gap-5 text-primary-foreground">
           {session && session?.user ? (
             <>
               <form
