@@ -1,19 +1,14 @@
-"use client";
-export default function Home() {
-    const Postman = async () => {
-        const result = await fetch("http://localhost:3000/api/user/vote", {
-            method: "POST",
-            body: JSON.stringify({ post_id: "676880224da60d0a2ffae4ff", val: 1 }),
-        });
-        console.log(result);
-        return;
-    };
-    return (
-        <>
-            <h1>Hello, world</h1>
-            <button className="text-white" onClick={Postman}>
-                Postman button
-            </button>
-        </>
-    );
+import PostsFeed from "../components/posts";
+
+export default async function Page() {
+  // this one is the first fetching posts, I want this to use SSR.
+  const posts_result = await fetch(`${process.env.SERVER_URI}/post`, {
+    method: "GET",
+  });
+  const posts = await posts_result.json();
+  return (
+    <div className="m-10">
+      <PostsFeed posts={posts} />
+    </div>
+  );
 }
