@@ -18,10 +18,12 @@ const filters = [
   { name: "User", value: "user_id" },
 ];
 
+// dev validate searchBy before searching.
 const SearchBar = () => {
   const [searchBy, setSearchBy] = useState("");
   const [query, setQuery] = useState("");
   const [isFetching, setIsFetching] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // little trick: set fetching true first, then at finally, set fetching false

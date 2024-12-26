@@ -3,6 +3,7 @@ import Image from "next/image";
 import { auth, signIn, signOut } from "@/auth";
 import { Session } from "next-auth";
 import SearchBar from "./SearchBar";
+import { Button } from "@/components/ui/button";
 
 // note that
 // 1. in src, you can add a file in pulic/ then just simply add /filename.png like that.
@@ -34,7 +35,9 @@ const Navbar = async () => {
                   await signOut();
                 }}
               >
-                <button type="submit">Logout</button>
+                <Button className="m-2" type="submit">
+                  Logout
+                </Button>
               </form>
             </>
           ) : (
@@ -44,7 +47,9 @@ const Navbar = async () => {
                 await signIn();
               }}
             >
-              <button type="submit">Login</button>
+              <Button className="m-2" type="submit">
+                Login
+              </Button>
             </form>
           )}
         </div>
