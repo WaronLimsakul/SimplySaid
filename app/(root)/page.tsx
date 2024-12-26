@@ -1,4 +1,4 @@
-import PostsFeed from "../components/posts";
+import PostsFeed from "../components/feed/PostsFeed";
 
 export default async function Page() {
   // this one is the first fetching posts, I want this to use SSR.
