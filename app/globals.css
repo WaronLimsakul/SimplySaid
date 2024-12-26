@@ -9,6 +9,27 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "SNPro";
+    src: url("/fonts/SNpro-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SNPro";
+    src: url("/fonts/SNPro-RegularItalic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "SNPro";
+    src: url("/fonts/SNPro-BoldItalic.woff2") format("woff2");
+    font-weight: 700;
+    font-style: italic;
+}
+
 body {
     font-family: "SNPro", sans-serif;
 }
