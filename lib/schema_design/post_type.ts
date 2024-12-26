@@ -1,14 +1,12 @@
-import { ObjectId } from "mongodb";
-
 // from post type
 type postt = {
-  id: null | string | ObjectId;
+  _id: string;
   object: string;
-  owner_id: string | ObjectId;
+  title: string;
   tags: string[];
   content: string;
-  upvotes: number;
-  downvotes: number;
+  votes: [number, number];
+  user_id: string;
 };
 
 export default postt;
