@@ -4,7 +4,6 @@ import { ObjectId } from "mongodb";
 import { NextRequest } from "next/server";
 
 const users_coll = db.collection("users");
-const sessions_coll = db.collection("sessions");
 
 // have to pass in req: Request before params to actually access params.
 export async function GET(
@@ -25,6 +24,7 @@ export async function GET(
 }
 
 // only PUT if the request come from the account owner.
+// We use this route to edit user profile.
 export async function PUT(
     req: NextRequest,
     { params }: { params: Promise<{ user_id: string }> },
