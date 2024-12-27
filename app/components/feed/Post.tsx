@@ -1,3 +1,4 @@
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,26 +10,40 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import postt from "@/lib/schema_design/post_type";
-import { ExternalLink, ThumbsDown, ThumbsUp } from "lucide-react";
+import { AvatarFallback } from "@radix-ui/react-avatar";
+import { CircleUser, ExternalLink, ThumbsDown, ThumbsUp } from "lucide-react";
 import React from "react";
 
 const Post = ({ post }: { post: postt }) => {
+    const { _id, title, content, object, tags, votes, user_data } = post;
+    const user_name = user_data.name;
+    const user_image = user_data.image;
+
     return (
         <div className="my-4">
             <Card className="w-auto">
                 <CardHeader>
-                    <CardTitle>{post.title}</CardTitle>
-                    <CardDescription>{post.user_id}</CardDescription>
+                    <CardTitle className="text-xl">{title}</CardTitle>
+                    <CardDescription className="flex justify-start content-center gap-2">
+                        <Avatar className="h-7 w-auto">
+                            <AvatarImage src={user_image} />
+                            <AvatarFallback>
+                                <CircleUser />
+                            </AvatarFallback>
+                        </Avatar>
+                        <p className="my-auto">{user_name}</p>
+                    </CardDescription>
                     <div className="flex justify-start gap-1">
-                        {post.tags.map((tag) => (
-                            <Badge className="italic" variant="secondary" key={tag}>
+                        <Badge className="italic">{object}</Badge>
+                        {tags.map((tag) => (
+                            <Badge className="" variant="secondary" key={tag}>
                                 {tag}
                             </Badge>
                         ))}
                     </div>
                 </CardHeader>
                 <CardContent className="pb-2">
-                    <p>{post.content}</p>
+                    <p>{content}</p>
                 </CardContent>
                 <CardFooter className="flex p-4 justify-start gap-1">
                     <Button variant="ghost" size="icon" className="rounded-full">
