@@ -1,13 +1,10 @@
 import { db } from "@/lib/mongodb";
-import postt from "@/lib/schema_design/post_type";
-import authorize_session from "@/utils/check_authenticate";
-import pushPostToUser from "@/utils/push_post_to_user";
-import { storePost } from "@/utils/store_post";
+import pushPostToUser from "@/utils/backend/push_post_to_user";
+import { storePost } from "@/utils/backend/store_post";
 import { ObjectId } from "mongodb";
 import { NextRequest } from "next/server";
 
 const posts_coll = db.collection("posts");
-const users_coll = db.collection("users");
 
 // can get posts by user_id, post_id, tags, object.
 // (Next.js GET method strip the body out, so we use query params instead.)

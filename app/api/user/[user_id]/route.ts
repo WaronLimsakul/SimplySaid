@@ -1,5 +1,5 @@
 import { db } from "@/lib/mongodb";
-import authorize_session from "@/utils/check_authenticate";
+import authorize_session from "@/utils/backend/check_authenticate";
 import { ObjectId } from "mongodb";
 import { NextRequest } from "next/server";
 

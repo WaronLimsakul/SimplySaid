@@ -9,7 +9,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { navigate } from "@/utils/client_nav";
+import { navigate } from "@/utils/frontend/client_nav";
 
 const filters = [
     // directy map ready to fetch

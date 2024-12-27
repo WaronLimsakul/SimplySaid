@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { auth, signIn, signOut } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { Session } from "next-auth";
 import SearchBar from "./SearchBar";
 import { Button } from "@/components/ui/button";
+import { getSession } from "@/utils/frontend/get_session";
 
 // note that
 // 1. in src, you can add a file in pulic/ then just simply add /filename.png like that.
@@ -11,7 +12,7 @@ import { Button } from "@/components/ui/button";
 const Navbar = async () => {
     // we can check if there is session going on by awaiting this auth() function.
     // Promise will return {user: {}, id: str, sessionToken: str, userId: str, expires: str}
-    const session: null | Session = await auth();
+    const session: null | Session = await getSession();
     if (session) console.log(session);
 
     return (
