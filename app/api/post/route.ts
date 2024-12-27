@@ -1,6 +1,8 @@
 import { db } from "@/lib/mongodb";
 import postt from "@/lib/schema_design/post_type";
 import authorize_session from "@/utils/check_authenticate";
+import pushPostToUser from "@/utils/push_post_to_user";
+import { storePost } from "@/utils/store_post";
 import { ObjectId } from "mongodb";
 import { NextRequest } from "next/server";
 
@@ -47,38 +49,13 @@ export async function GET(req: NextRequest) {
 }
 
 // post need object, title, tags, content
+// we also need to push post id into user.
 export async function POST(req: NextRequest) {
-    const authorized_result = await authorize_session(req);
-    if (authorized_result instanceof Response) return authorized_result;
+    const posting_result = await storePost(req);
+    if (posting_result instanceof Response) return posting_result;
 
-    const user_id = authorized_result;
+    const { post_id, user_id } = posting_result;
+    const pushing_post_result = await pushPostToUser(post_id, user_id);
 
-    const { post }: { post: postt } = await req.json();
-    if (!post) return new Response("Bad request", { status: 400 });
-
-    if (!(post.object && post.title && post.tags && post.content))
-        return new Response("Bad request, post data not complete", { status: 400 });
-
-    const user_data = await users_coll.findOne(
-        { _id: new ObjectId(user_id) },
-        { projection: { _id: 1, name: 1, image: 1 } },
-    );
-
-    if (!user_data) return new Response("Internal server error", { status: 500 });
-    const { _id, name, image } = user_data;
-
-    const result = await posts_coll.insertOne({
-        object: post.object,
-        title: post.title,
-        tags: post.tags,
-        content: post.content,
-        // [up, down]
-        votes: [0, 0],
-        user_data: {
-            user_id: _id,
-            name: name,
-            image: image,
-        },
-    });
-    return Response.json(result);
+    return pushing_post_result;
 }

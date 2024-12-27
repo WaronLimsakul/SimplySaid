@@ -2,13 +2,14 @@ import { ObjectId } from "mongodb";
 
 // from user type
 type usert = {
-  id: null | string | ObjectId;
-  name: string;
-  email: string;
-  image: string;
-  post_ids: string[] | ObjectId[] | null;
-  post_amount: number;
-  votes: { post_id: string | ObjectId[]; val: 1 | -1 }[] | null;
+    id: null | string | ObjectId;
+    name: string;
+    email: string;
+    image: string;
+    votes: { post_id: string | ObjectId[]; val: 1 | -1 }[] | null;
+    posts: ObjectId[] | string[];
 };
+// note that posts is objectId[] in the schema but when fetched, from db -> server -> client
+// It changes to string[].
 
 export default usert;
