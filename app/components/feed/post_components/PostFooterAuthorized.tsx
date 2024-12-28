@@ -6,21 +6,77 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowBigDown, ArrowBigUp, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const PostFooterAuthorized = ({ votes }: { votes: [number, number] }) => {
+const PostFooterAuthorized = ({
+  votes,
+  post_id,
+}: {
+  votes: [number, number];
+  post_id: string;
+}) => {
   const [vote, setVote] = useState(0); // 3 states (0, 1, -1) = (nothing, upvote, downvote)
+  const [upVoteNum, setUpVoteNum] = useState(votes[0]);
+  const [downVoteNum, setDownVoteNum] = useState(votes[1]);
 
   useEffect(() => {
-    const upVote = async () => {};
-    const downVote = async () => {};
-    const unVote = async () => {};
-  }, [vote]);
+    async function putVote() {
+      const voteResult = await fetch(
+        // just realize we need to add prefix NEXT_PUBLIC
+        // to make variable accessible in client side.
+        `${process.env.NEXT_PUBLIC_SERVER_URI}/post/vote`,
+        {
+          method: "POST",
+          body: JSON.stringify({ post_id, val: vote }),
+        },
+      );
+      // .ok come with range 200-299
+      if (voteResult.ok) console.log("vote success: ", voteResult);
+      else console.log("vote not good: ", voteResult);
+    }
+    async function unVote() {
+      const unVoteResult = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URI}/post/vote`,
+        { method: "DELETE", body: JSON.stringify({ post_id }) },
+      );
+      if (unVoteResult.ok) console.log("unvote success: ", unVoteResult);
+      else console.log("unVote not good: ", unVoteResult);
+    }
 
+    if (vote == 0) unVote();
+    else putVote();
+
+    // add post_id dependency since we send it too, ESLint didn't let me leave it.
+  }, [vote, post_id]);
+
+  // only for state management
   const handleLike = () => {
-    setVote(vote == 1 ? 0 : 1);
+    // warn user if spam too fast ?
+    if (vote == 0) {
+      setVote(1);
+      setUpVoteNum(upVoteNum + 1);
+    } else if (vote == 1) {
+      setVote(0);
+      setUpVoteNum(upVoteNum - 1);
+    } else {
+      setVote(1);
+      setUpVoteNum(upVoteNum + 1);
+      setDownVoteNum(downVoteNum - 1);
+    }
   };
+
   const handleDisLike = () => {
-    setVote(vote == -1 ? 0 : -1);
+    if (vote == 0) {
+      setVote(-1);
+      setDownVoteNum(downVoteNum + 1);
+    } else if (vote == -1) {
+      setVote(0);
+      setDownVoteNum(downVoteNum - 1);
+    } else {
+      setVote(-1);
+      setDownVoteNum(downVoteNum + 1);
+      setUpVoteNum(upVoteNum - 1);
+    }
   };
+
   // I think shadcn set button that contain icon to default w-4 and h-4. So
   // I did [&_svg] to override it.
   return (
@@ -38,7 +94,7 @@ const PostFooterAuthorized = ({ votes }: { votes: [number, number] }) => {
             <ArrowBigUp strokeWidth={1.5} />
           )}
         </Button>
-        <p className="my-auto pr-2">{votes[0]}</p>
+        <p className="font-semibold my-auto pr-2">{upVoteNum}</p>
         <Separator orientation="vertical" className="h-6 mx-1" />
         <Button
           variant="ghost"
@@ -52,7 +108,7 @@ const PostFooterAuthorized = ({ votes }: { votes: [number, number] }) => {
             <ArrowBigDown strokeWidth={1.5} />
           )}
         </Button>
-        <p className="my-auto pr-2">{votes[1]}</p>
+        <p className="font-semibold my-auto pr-2">{downVoteNum}</p>
       </div>
       <Button variant="ghost" size="icon" className="rounded-full">
         <ExternalLink />
