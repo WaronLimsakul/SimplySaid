@@ -57,6 +57,5 @@ export async function PUT(
         { _id: new ObjectId(user_id) },
         updated_doc,
     );
-    console.log(result);
     return Response.json(result);
 }
