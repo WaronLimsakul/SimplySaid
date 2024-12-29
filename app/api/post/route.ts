@@ -42,6 +42,7 @@ export async function GET(req: NextRequest) {
     }
 
     const result = await posts_coll.find(filter).toArray();
+
     return Response.json(result);
 }
 

@@ -16,6 +16,7 @@ const filters = [
     { name: "Topic", value: "object" },
     { name: "Tags", value: "tags" },
     { name: "User", value: "user_id" },
+    // Title... upcoming feature.
 ];
 
 // dev validate searchBy before searching.
