@@ -22,7 +22,6 @@ const Post = async ({ post }: { post: postt }) => {
     );
     if (found_user_vote) init_vote_val = found_user_vote.val;
   }
-  console.log("init_vote_val: ", init_vote_val);
   // note that
   // 1. separator's container must have defined height (at least auto)
   // ; otherwise, the separator will not appear.

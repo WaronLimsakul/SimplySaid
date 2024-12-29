@@ -3,8 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { ArrowBigDown, ArrowBigUp, ExternalLink } from "lucide-react";
+import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import ShareButton from "./ShareButton";
 
 const PostFooterAuthorized = ({
   votes,
@@ -19,7 +20,6 @@ const PostFooterAuthorized = ({
   const [upVoteNum, setUpVoteNum] = useState(votes[0]);
   const [downVoteNum, setDownVoteNum] = useState(votes[1]);
   const isFirstRender = useRef(true);
-  console.log("vote: ", vote);
 
   useEffect(() => {
     // This hook always execute the first time rendering,
@@ -124,9 +124,7 @@ const PostFooterAuthorized = ({
         </Button>
         <p className="font-semibold my-auto pr-2">{downVoteNum}</p>
       </div>
-      <Button variant="ghost" size="icon" className="rounded-full">
-        <ExternalLink />
-      </Button>
+      <ShareButton post_id={post_id} />
     </CardFooter>
   );
 };
