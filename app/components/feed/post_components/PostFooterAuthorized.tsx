@@ -4,20 +4,31 @@ import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ArrowBigDown, ArrowBigUp, ExternalLink } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const PostFooterAuthorized = ({
   votes,
+  init_vote_val,
   post_id,
 }: {
   votes: [number, number];
+  init_vote_val: number;
   post_id: string;
 }) => {
-  const [vote, setVote] = useState(0); // 3 states (0, 1, -1) = (nothing, upvote, downvote)
+  const [vote, setVote] = useState(init_vote_val); // 3 states (0, 1, -1) = (nothing, upvote, downvote)
   const [upVoteNum, setUpVoteNum] = useState(votes[0]);
   const [downVoteNum, setDownVoteNum] = useState(votes[1]);
+  const isFirstRender = useRef(true);
+  console.log("vote: ", vote);
 
   useEffect(() => {
+    // This hook always execute the first time rendering,
+    // So I prevent that.
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     async function putVote() {
       const voteResult = await fetch(
         // just realize we need to add prefix NEXT_PUBLIC
@@ -38,7 +49,10 @@ const PostFooterAuthorized = ({
         { method: "DELETE", body: JSON.stringify({ post_id }) },
       );
       if (unVoteResult.ok) console.log("unvote success: ", unVoteResult);
-      else console.log("unVote not good: ", unVoteResult);
+      else {
+        const errorResult = await unVoteResult.text();
+        console.log("unVote not good: ", errorResult);
+      }
     }
 
     if (vote == 0) unVote();

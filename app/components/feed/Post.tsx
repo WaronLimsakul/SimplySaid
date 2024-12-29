@@ -9,10 +9,20 @@ import { getSession } from "@/utils/frontend/get_session";
 // as long as I don't use client rendering, I can declare async to any component.
 const Post = async ({ post }: { post: postt }) => {
   const { _id, title, content, object, tags, votes, user_data } = post;
+  // this user implies the writer of a post
   const user_name = user_data.name;
   const user_image = user_data.image;
-  const session = await getSession();
 
+  // already cached
+  const session = await getSession();
+  let init_vote_val = 0;
+  if (session && session.user && "votes" in session.user) {
+    const found_user_vote = session.user.votes.find(
+      (vote: { post_id: string; val: 1 | -1 }) => vote.post_id == _id,
+    );
+    if (found_user_vote) init_vote_val = found_user_vote.val;
+  }
+  console.log("init_vote_val: ", init_vote_val);
   // note that
   // 1. separator's container must have defined height (at least auto)
   // ; otherwise, the separator will not appear.
@@ -31,7 +41,11 @@ const Post = async ({ post }: { post: postt }) => {
           <p>{content}</p>
         </CardContent>
         {session ? (
-          <PostFooterAuthorized votes={votes} post_id={_id} />
+          <PostFooterAuthorized
+            votes={votes}
+            init_vote_val={init_vote_val}
+            post_id={_id}
+          />
         ) : (
           <PostFooterGuest votes={votes} />
         )}

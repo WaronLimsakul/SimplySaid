@@ -7,7 +7,10 @@ export default async function Page() {
   // this one is the first fetching posts, I want this to use SSR.
   const posts_result = await fetch(`${process.env.SERVER_URI}/post`, {
     method: "GET",
-    cache: "force-cache", // don't even know I will use it but I'll cache here.
+    // using force-cache will cache data across many
+    // incoming server requests That's not ideal for posts fetching.
+    // Actually, no-store is default.
+    cache: "no-store",
   });
   const posts = await posts_result.json();
   return (
