@@ -8,14 +8,15 @@ export async function deleteVoteFromUser(
   user_id: string,
   post_id: string,
 ): Promise<number | Error> {
+  // this one return the found document of null
   const result = await users_coll.findOneAndUpdate(
     { _id: new ObjectId(user_id) },
     { $pull: { votes: { post_id: post_id } } },
     { returnDocument: "before", projection: { votes: 1 } },
   );
-  if (!result.value) return new Error("Fail finding target post");
+  if (!result) return new Error("Fail finding target post");
 
-  const removed_vote = result.value.votes.find(
+  const removed_vote = result.votes.find(
     (vote: { post_id: string; val: number }) => vote.post_id == post_id,
   );
 
