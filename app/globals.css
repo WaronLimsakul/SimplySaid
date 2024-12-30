@@ -38,16 +38,18 @@ body {
     :root {
         --background: 26 21% 95%;
         --foreground: 26 5% 10%;
-        --card: 26 21% 90%;
-        --card-foreground: 26 5% 15%;
+        --card: 30 30% 95%;
+        /* Pale beige background for cards */
+        --card-foreground: 0 0% 20%;
+        /* Dark text for cards */
         --popover: 26 21% 95%;
         --popover-foreground: 26 95% 10%;
         --primary: 26 100% 50%;
         --primary-foreground: 0 0% 100%;
-        --secondary: 26 21% 70%;
-        --secondary-foreground: 0 0% 0%;
-        --muted: -12 21% 85%;
-        --muted-foreground: 26 5% 40%;
+        --secondary: 150 40% 30%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 0 0% 95%;
+        --muted-foreground: 0 0% 40%;
         --accent: 0 0% 80%;
         --accent-foreground: 26 5% 15%;
         --destructive: 0 50% 46%;
