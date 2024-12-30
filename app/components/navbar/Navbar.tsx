@@ -37,7 +37,7 @@ const Navbar = async () => {
                 }}
               >
                 <Button
-                  className="m-2 bg-secondary text-secondary-foreground hover:bg-green-700"
+                  className="m-2 bg-secondary hover:bg-green-700 text-secondary-foreground"
                   type="submit"
                 >
                   Logout
@@ -51,7 +51,10 @@ const Navbar = async () => {
                 await signIn();
               }}
             >
-              <Button className="m-2" type="submit">
+              <Button
+                className="m-2 bg-secondary hover:bg-green-700 text-secondary-foreground"
+                type="submit"
+              >
                 Login
               </Button>
             </form>
