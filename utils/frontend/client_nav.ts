@@ -3,5 +3,5 @@
 import { redirect } from "next/navigation";
 
 export async function navigate(searchBy: string, query: string) {
-    redirect(`${process.env.CLIENT_URI}/post?${searchBy}=${query}`);
+  redirect(`${process.env.CLIENT_URI}/post?${searchBy}=${query}`);
 }

@@ -24,6 +24,7 @@ const PostFooterAuthorized = ({
   useEffect(() => {
     // This hook always execute the first time rendering,
     // So I prevent that.
+    console.log("post id: ", post_id, " first render: ", isFirstRender);
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;

@@ -13,7 +13,7 @@ const Navbar = async () => {
   // we can check if there is session going on by awaiting this auth() function.
   // Promise will return {user: {}, id: str, sessionToken: str, userId: str, expires: str}
   const session: null | Session = await getSession();
-  if (session) console.log(session);
+  // if (session) console.log(session);
 
   return (
     <header className="sticky top-0 z-50 px-5 py-0.5 bg-primary shadow">

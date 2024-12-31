@@ -6,7 +6,7 @@ import postt from "@/lib/schema_design/post_type";
 // container = set to max width, mx-auto - make it center
 // grid = grid container, grid-cols-12 = declare based 12 systems
 const PostsFeed = async ({ posts }: { posts: postt[] }) => {
-  console.log(posts[0]);
+  // console.log(posts[0]);
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-12 gap-4">
