@@ -39,12 +39,13 @@ body {
         --background: 26 21% 95%;
         --foreground: 26 5% 10%;
         --card: 30 30% 95%;
-        /* Pale beige background for cards */
         --card-foreground: 0 0% 20%;
-        /* Dark text for cards */
         --popover: 26 21% 95%;
         --popover-foreground: 26 95% 10%;
+
+        /*HEX: #FF6F00*/
         --primary: 26 100% 50%;
+
         --primary-foreground: 0 0% 100%;
         --secondary: 150 40% 30%;
         --secondary-foreground: 0 0% 100%;

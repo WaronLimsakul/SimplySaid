@@ -1,6 +1,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { SearchSlash } from "lucide-react";
+import Link from "next/link";
 
 const NoPostResult = () => {
   return (
@@ -16,7 +17,7 @@ const NoPostResult = () => {
         </AlertDescription>
       </Alert>
       <Button className="text-lg text-secondary px-6 py-3 mt-4" variant="link">
-        <a href="/">Back to main page</a>
+        <Link href="/">Back to main page</Link>
       </Button>
     </div>
   );

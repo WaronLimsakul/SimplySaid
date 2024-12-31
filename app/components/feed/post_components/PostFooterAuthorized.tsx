@@ -21,6 +21,13 @@ const PostFooterAuthorized = ({
   const [downVoteNum, setDownVoteNum] = useState(votes[1]);
   const isFirstRender = useRef(true);
 
+  // in other render than the first one, isFirstRender is not
+  // reset or it's reset slower than the main useEffect
+  // So I need to set it here before the it.
+  useEffect(() => {
+    isFirstRender.current = true;
+  }, []);
+
   useEffect(() => {
     // This hook always execute the first time rendering,
     // So I prevent that.
