@@ -25,7 +25,6 @@ export async function GET(req: Request) {
       },
     },
     { $limit: 10 },
-    { $project: { _id: 1, title: 1 } },
   ];
   // Must use aggregate, this is counted as a complex query.
   // And .find() don't support Apache lucene.

@@ -9,25 +9,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { navigate } from "@/utils/frontend/client_nav";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const filters = [
-  { name: "General", value: "fuzzy" },
-  { name: "Topic", value: "object" },
-  { name: "Tags", value: "tags" },
-
-  // No one will use this. we need to change to just user name.
-  { name: "User ID", value: "user_id" },
-  // Title... upcoming feature.
+  { name: "Fuzzy Search (DIY)", value: "fuzzy" },
+  { name: "Atlas Search", value: "atlas" },
+  { name: "Search by Topic", value: "object" },
+  { name: "Search by Tags", value: "tags" },
+  { name: "Search by UserID", value: "user_id" },
 ];
 
 // dev validate searchBy before searching.
 const SearchBar = () => {
   const [searchBy, setSearchBy] = useState("fuzzy");
   const [query, setQuery] = useState("");
-  const [isFetching, setIsFetching] = useState(false);
   const router = useRouter();
 
   const search = () => {
@@ -40,9 +35,9 @@ const SearchBar = () => {
   return (
     <div className="flex w-full max-w-lg align-center justify-center">
       <Select onValueChange={setSearchBy}>
-        <SelectTrigger className="m-1 w-1/4 border-primary-foreground text-primary-foreground border-2">
+        <SelectTrigger className="m-1 w-1/3 border-primary-foreground text-primary-foreground border-2">
           <SelectValue
-            placeholder="General"
+            placeholder="Fuzzy Search (DIY)"
             defaultValue={"fuzzy"}
           ></SelectValue>
         </SelectTrigger>
@@ -66,7 +61,6 @@ const SearchBar = () => {
         }}
       />
       <Button
-        disabled={isFetching}
         onClick={search}
         className="m-1 bg-white text-zinc-800 hover:bg-gray-200"
       >
