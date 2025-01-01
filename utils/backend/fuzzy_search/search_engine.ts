@@ -1,4 +1,5 @@
 import postt from "@/lib/schema_design/post_type";
+import { ObjectId } from "mongodb";
 
 interface InvertedIndex {
     [word: string]: Set<string>;

@@ -1,4 +1,4 @@
-import check_post_exists from "@/lib/check_post_exist";
+import check_post_exists from "@/utils/backend/check_post_exist";
 import { db } from "@/lib/mongodb";
 import authorize_session from "@/utils/backend/check_authenticate";
 import { ObjectId } from "mongodb";
