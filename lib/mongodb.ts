@@ -4,11 +4,11 @@ if (!process.env.MONGODB_URI) throw new Error("No mongodb uri");
 const uri: string = process.env.MONGODB_URI;
 
 const client = new MongoClient(uri, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    },
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: false,
+    deprecationErrors: true,
+  },
 });
 
 const db = client.db("simply");

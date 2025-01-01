@@ -9,10 +9,10 @@ export async function GET(req: NextRequest) {
     const url = new URL(req.url);
     const search_params = url.searchParams;
 
-    if (!search_params.has("general"))
-        return new Response("Only test with general now", { status: 400 });
+    if (!search_params.has("q"))
+        return new Response("Only test with general query now", { status: 400 });
 
-    const target = search_params.get("general");
+    const target = search_params.get("q");
     if (!target) return new Response("No search words", { status: 400 });
 
     const fse = await getSE();
