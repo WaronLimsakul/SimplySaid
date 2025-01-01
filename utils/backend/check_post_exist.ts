@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { db } from "./mongodb";
+import { db } from "../../lib/mongodb";
 
 const posts_coll = db.collection("posts");
 
