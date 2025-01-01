@@ -21,17 +21,14 @@ const PostFooterAuthorized = ({
   const [downVoteNum, setDownVoteNum] = useState(votes[1]);
   const isFirstRender = useRef(true);
 
-  // in other render than the first one, isFirstRender is not
-  // reset or it's reset slower than the main useEffect
-  // So I need to set it here before the it.
+  // React strict-mode unmount and remount my component again
+  // With the same state T-T (double useEffect triggering)
   useEffect(() => {
     isFirstRender.current = true;
   }, []);
 
   useEffect(() => {
-    // This hook always execute the first time rendering,
-    // So I prevent that.
-    console.log("post id: ", post_id, " first render: ", isFirstRender);
+    // This hook trigger once when mounted to DOM. I don't want that.
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
