@@ -22,7 +22,7 @@ const PostFooterAuthorized = ({
   const isFirstRender = useRef(true);
 
   // React strict-mode unmount and remount my component again
-  // With the same state T-T (double useEffect triggering)
+  // with the SAME state T-T (double useEffect triggering)
   useEffect(() => {
     isFirstRender.current = true;
   }, []);

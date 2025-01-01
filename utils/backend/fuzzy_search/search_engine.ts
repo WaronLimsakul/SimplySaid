@@ -48,9 +48,11 @@ class SearchEngine {
         let minDistance = Infinity;
         let closestW = word;
 
+        const marginOfError = 2;
+
         for (const dictWord of Object.keys(this.invertedIndex)) {
             const distance = this.getEditDistance(word, dictWord);
-            if (distance < minDistance && distance <= 3) {
+            if (distance < minDistance && distance <= marginOfError) {
                 minDistance = distance;
                 closestW = dictWord;
             }
@@ -100,7 +102,8 @@ class SearchEngine {
                 target_posts = this.invertedIndex[token];
             }
             target_posts.forEach((post_id) => {
-                score_board[post_id] = 0;
+                score_board[post_id] =
+                    post_id in score_board ? score_board[post_id] : 0;
                 const full_post = this.posts[post_id];
                 if (full_post.title.toLowerCase().includes(token))
                     score_board[post_id] += 4;
@@ -110,9 +113,9 @@ class SearchEngine {
                     score_board[post_id] += 2;
                 if (full_post.user_data.name.toLowerCase().includes(token))
                     score_board[post_id] += 2;
-                console.log("Post id:", post_id, ", Score: ", score_board[post_id]);
             });
         });
+        console.log("score_board: ", score_board);
 
         // find cut point later.
         return Object.entries(score_board)
