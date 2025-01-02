@@ -5,6 +5,7 @@ import PostHeader from "./post_components/PostHeader";
 import PostFooterAuthorized from "./post_components/PostFooterAuthorized";
 import PostFooterGuest from "./post_components/PostFooterGuest";
 import { getSession } from "@/utils/frontend/get_session";
+import { Separator } from "@/components/ui/separator";
 
 // as long as I don't use client rendering, I can declare async to any component.
 const Post = async ({ post }: { post: Post }) => {
@@ -28,7 +29,7 @@ const Post = async ({ post }: { post: Post }) => {
   // 2. PostFooterGuest is server-side rendered since guest don't need any interaction.
   return (
     <div className="my-4">
-      <Card className="w-auto">
+      <Card className="w-auto h-auto">
         <PostHeader
           title={title}
           user_image={user_image}
@@ -36,7 +37,8 @@ const Post = async ({ post }: { post: Post }) => {
           object={object}
           tags={tags}
         />
-        <CardContent className="pb-2">
+        <Separator orientation="horizontal" className="w-[93%]  mx-auto" />
+        <CardContent className="pt-3 pb-2">
           <p>{content}</p>
         </CardContent>
         {session ? (
@@ -46,7 +48,7 @@ const Post = async ({ post }: { post: Post }) => {
             post_id={_id}
           />
         ) : (
-          <PostFooterGuest votes={votes} />
+          <PostFooterGuest votes={votes} post_id={_id} />
         )}
       </Card>
     </div>

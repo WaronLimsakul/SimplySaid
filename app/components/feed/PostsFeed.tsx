@@ -4,9 +4,8 @@ import PostType from "@/lib/schema_design/post_type";
 
 // get post props from parents.
 // container = set to max width, mx-auto - make it center
-// grid = grid container, grid-cols-12 = declare based 12 systems
+// grid = grid container, grid-cols-12 = declare based 12 system
 const PostsFeed = async ({ posts }: { posts: PostType[] }) => {
-  // console.log(posts[0]);
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-12 gap-0 md:gap-4">
