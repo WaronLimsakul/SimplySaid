@@ -9,14 +9,14 @@ const PostsFeed = async ({ posts }: { posts: PostType[] }) => {
   // console.log(posts[0]);
   return (
     <div className="container mx-auto">
-      <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-3 " />
-        <div className="col-span-6">
+      <div className="grid grid-cols-12 gap-0 md:gap-4">
+        <div className="col-span-0 md:col-span-3 " />
+        <div className="col-span-12 md:col-span-6 mx-2 md:mx-0">
           {posts.map((post) => (
             <Post key={post._id} post={post} />
           ))}
         </div>
-        <div className="col-span-3" />
+        <div className="col-span-0 md:col-span-3" />
       </div>
     </div>
   );

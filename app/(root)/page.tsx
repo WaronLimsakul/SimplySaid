@@ -14,7 +14,7 @@ export default async function Page() {
   });
   const posts = await posts_result.json();
   return (
-    <div className="m-5">
+    <div className="mt-5">
       <PostsFeed posts={posts} />
     </div>
   );
