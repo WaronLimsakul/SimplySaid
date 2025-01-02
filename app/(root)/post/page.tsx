@@ -1,6 +1,6 @@
 import PostsFeed from "@/app/components/feed/PostsFeed";
 import NoPostResult from "@/app/components/searched_posts/NoPostResult";
-import postt from "@/lib/schema_design/post_type";
+import Post from "@/lib/schema_design/post_type";
 import { getTagsQuery } from "@/utils/frontend/get_tags_query";
 
 const page = async ({
@@ -9,7 +9,7 @@ const page = async ({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) => {
   // no usePathName in server side, so we have to extract filter query by ourselves.
-  let fetched_posts: postt[] | null = null;
+  let fetched_posts: Post[] | null = null;
   const { post_id, fuzzy, atlas, tags, user_id, object } = await searchParams;
 
   if (post_id) {

@@ -1,11 +1,11 @@
 import React from "react";
 import Post from "./Post";
-import postt from "@/lib/schema_design/post_type";
+import PostType from "@/lib/schema_design/post_type";
 
 // get post props from parents.
 // container = set to max width, mx-auto - make it center
 // grid = grid container, grid-cols-12 = declare based 12 systems
-const PostsFeed = async ({ posts }: { posts: postt[] }) => {
+const PostsFeed = async ({ posts }: { posts: PostType[] }) => {
   // console.log(posts[0]);
   return (
     <div className="container mx-auto">

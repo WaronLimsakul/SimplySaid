@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import postt from "@/lib/schema_design/post_type";
+import type Post from "@/lib/schema_design/post_type";
 import React from "react";
 import PostHeader from "./post_components/PostHeader";
 import PostFooterAuthorized from "./post_components/PostFooterAuthorized";
@@ -7,7 +7,7 @@ import PostFooterGuest from "./post_components/PostFooterGuest";
 import { getSession } from "@/utils/frontend/get_session";
 
 // as long as I don't use client rendering, I can declare async to any component.
-const Post = async ({ post }: { post: postt }) => {
+const Post = async ({ post }: { post: Post }) => {
   const { _id, title, content, object, tags, votes, user_data } = post;
   // this user implies the writer of a post
   const user_name = user_data.name;
