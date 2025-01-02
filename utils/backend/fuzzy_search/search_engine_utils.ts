@@ -4,33 +4,33 @@ import { ObjectId } from "mongodb";
 
 const posts_coll = db.collection("posts");
 // fuzzy search engine.
-let fse: SearchEngine | null = null;
+let fuzzySearchEngine: SearchEngine | null = null;
 
-const createSE = async () => {
-    const se = new SearchEngine();
+const createSearchEngine = async () => {
+    const newEngine = new SearchEngine();
     const allPostsCursor = posts_coll.find(
         {},
         { projection: { content: 0, votes: 0 } },
     );
     for await (const post of allPostsCursor) {
-        se.addPost(post);
+        newEngine.addPost(post);
     }
-    return se;
+    return newEngine;
 };
 
-const getSE = async () => {
-    if (!fse) fse = await createSE();
-    return fse;
+const getSearchEngine = async () => {
+    if (!fuzzySearchEngine) fuzzySearchEngine = await createSearchEngine();
+    return fuzzySearchEngine;
 };
 
-const updateSE = async (post_id: ObjectId) => {
-    if (!fse) {
-        return await getSE();
+const updateSearchEngine = async (post_id: ObjectId) => {
+    if (!fuzzySearchEngine) {
+        return await getSearchEngine();
     }
     const newPost = await posts_coll.findOne({ post_id: post_id });
     if (!newPost) return new Error("No new post found");
-    fse.addPost(newPost);
-    return fse;
+    fuzzySearchEngine.addPost(newPost);
+    return fuzzySearchEngine;
 };
 
-export { getSE, updateSE };
+export { getSearchEngine, updateSearchEngine };

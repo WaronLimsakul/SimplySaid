@@ -1,5 +1,5 @@
 import { db } from "@/lib/mongodb";
-import { getSE } from "@/utils/backend/fuzzy_search/search_engine_utils";
+import { getSearchEngine } from "@/utils/backend/fuzzy_search/search_engine_utils";
 import { Document, ObjectId, WithId } from "mongodb";
 import { NextRequest } from "next/server";
 
@@ -15,9 +15,9 @@ export async function GET(req: NextRequest) {
     const target = search_params.get("q");
     if (!target) return new Response("No search words", { status: 400 });
 
-    const fse = await getSE();
+    const fuzzySearchEngine = await getSearchEngine();
 
-    const targetPostIDs = fse.search(target);
+    const targetPostIDs = fuzzySearchEngine.search(target);
     console.log("target post ids: ", targetPostIDs);
     const fetchedPostsCursor = posts_coll
         // $in doesn't care order.

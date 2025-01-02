@@ -105,14 +105,20 @@ class SearchEngine {
                 score_board[post_id] =
                     post_id in score_board ? score_board[post_id] : 0;
                 const full_post = this.posts[post_id];
+
+                const title_weight = 4,
+                    object_weight = 3,
+                    tags_weight = 2,
+                    username_weight = 2;
+
                 if (full_post.title.toLowerCase().includes(token))
-                    score_board[post_id] += 4;
+                    score_board[post_id] += title_weight;
                 if (full_post.object.toLowerCase().includes(token))
-                    score_board[post_id] += 3;
+                    score_board[post_id] += object_weight;
                 if (full_post.tags.some((tag) => tag.toLowerCase().includes(token)))
-                    score_board[post_id] += 2;
+                    score_board[post_id] += tags_weight;
                 if (full_post.user_data.name.toLowerCase().includes(token))
-                    score_board[post_id] += 2;
+                    score_board[post_id] += username_weight;
             });
         });
         console.log("score_board: ", score_board);

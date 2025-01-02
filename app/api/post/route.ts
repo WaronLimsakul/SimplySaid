@@ -1,5 +1,5 @@
 import { db } from "@/lib/mongodb";
-import { updateSE } from "@/utils/backend/fuzzy_search/search_engine_utils";
+import { updateSearchEngine } from "@/utils/backend/fuzzy_search/search_engine_utils";
 import pushPostToUser from "@/utils/backend/push_post_to_user";
 import { storePost } from "@/utils/backend/store_post";
 import { ObjectId } from "mongodb";
@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
     const pushing_post_result = await pushPostToUser(post_id, user_id);
     if (!pushing_post_result.ok) return pushing_post_result;
 
-    const update_se_result = await updateSE(post_id);
+    const update_se_result = await updateSearchEngine(post_id);
     if (update_se_result instanceof Error)
         return new Response(update_se_result.message, { status: 500 });
 
