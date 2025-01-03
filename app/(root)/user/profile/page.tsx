@@ -12,7 +12,7 @@ const page = async () => {
                 <Button className="mb-3 text-lg text-primary" variant="link">
                     <Link href="/">{"<-- Back to main page"}</Link>
                 </Button>
-                <UserCard user={session.user} />
+                <UserCard user={session.user} signedIn={true} />
             </div>
         </div>
     );

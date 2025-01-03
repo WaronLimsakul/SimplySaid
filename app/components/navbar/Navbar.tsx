@@ -1,9 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { signIn } from "@/auth";
 import { Session } from "next-auth";
 import SearchBar from "./SearchBar";
-import { Button } from "@/components/ui/button";
 import { getSession } from "@/utils/frontend/get_session";
 import ProfileButton from "./ProfileButton";
 import SignInButton from "./SignInButton";
