@@ -20,7 +20,7 @@ const providers: Provider[] = [GitHub, Google];
 export const providerMap = providers.map((provider) => {
     if (typeof provider == "function") {
         const providerData = provider();
-        return { id: providerData.id, name: provider.name };
+        return { id: providerData.id, name: providerData.name };
     } else return { id: provider.id, name: provider.name };
 });
 
@@ -28,7 +28,7 @@ export const providerMap = providers.map((provider) => {
 // If user sign in with one provider --> They can't sign in with another provider with the same email.
 export const { handlers, signIn, signOut, auth } = NextAuth({
     adapter: MongoDBAdapter(client, mongoAdapter_opts),
-    providers,
+    providers: providers,
     pages: {
         signIn: "/signin",
     },

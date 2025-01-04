@@ -1,6 +1,7 @@
 import { signIn } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { LogIn } from "lucide-react";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const SignInButton = () => {
@@ -9,7 +10,7 @@ const SignInButton = () => {
             <form
                 action={async () => {
                     "use server";
-                    await signIn();
+                    redirect("/signin");
                 }}
             >
                 <Button
