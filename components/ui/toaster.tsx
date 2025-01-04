@@ -9,7 +9,7 @@ import {
   ToastTitle,
   ToastViewport,
 } from "@/components/ui/toast";
-import { CircleCheck, SlidersHorizontal } from "lucide-react";
+import { CircleCheck, CircleX, SlidersHorizontal } from "lucide-react";
 
 export function Toaster() {
   const { toasts } = useToast();
@@ -31,6 +31,7 @@ export function Toaster() {
                 <div className="flex gap-2">
                   {symbol == "check" && <CircleCheck color="#008000" />}
                   {symbol == "filter" && <SlidersHorizontal />}
+                  {symbol == "fail" && <CircleX color="red" />}
                   <ToastTitle className="my-auto">{title}</ToastTitle>
                 </div>
               )}
