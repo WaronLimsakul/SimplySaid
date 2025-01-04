@@ -45,7 +45,7 @@ const UserCard = ({ user, signedIn }: { user: User; signedIn: boolean }) => {
             </CardContent>
             <CardFooter className="flex gap-3">
                 {user.posts?.length && user.posts.length > 0 ? (
-                    <Button className="bg-secondary hover:bg-green-700">
+                    <Button className="">
                         <Link href={`/post?user_id=${user.id}`} className="flex">
                             {/* &apos; got parsed to ' */}
                             <Telescope className="mr-2" /> See {user.name}&apos;s posts
@@ -54,7 +54,7 @@ const UserCard = ({ user, signedIn }: { user: User; signedIn: boolean }) => {
                 ) : (
                     ""
                 )}
-                {signedIn ? <EditProfileButton /> : ""}
+                {signedIn ? <EditProfileButton user={user} /> : ""}
             </CardFooter>
         </Card>
     );

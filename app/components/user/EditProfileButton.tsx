@@ -7,24 +7,29 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import User from "@/lib/schema_design/user_type";
+import { Pencil } from "lucide-react";
 import React from "react";
+import EditProfileForm from "./EditProfileForm";
 
-const EditProfileButton = () => {
+const EditProfileButton = async ({ user }: { user: User }) => {
     return (
         <div>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button>Edit profile</Button>
+                    <Button className="bg-secondary hover:bg-green-600">
+                        <Pencil />
+                        Edit profile
+                    </Button>
                 </DialogTrigger>
                 <DialogContent>
-                    <form>
-                        <DialogHeader>
-                            <DialogTitle>Edit your information</DialogTitle>
-                            <DialogDescription>
-                                Edit your profile then click save
-                            </DialogDescription>
-                        </DialogHeader>
-                    </form>
+                    <DialogHeader>
+                        <DialogTitle>Edit your information</DialogTitle>
+                        <DialogDescription>
+                            Edit your profile then click save.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <EditProfileForm user={user} />
                 </DialogContent>
             </Dialog>
         </div>
