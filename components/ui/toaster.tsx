@@ -31,7 +31,7 @@ export function Toaster() {
                 <div className="flex gap-2">
                   {symbol == "check" && <CircleCheck color="#008000" />}
                   {symbol == "filter" && <SlidersHorizontal />}
-                  {symbol == "fail" && <CircleX color="red" />}
+                  {symbol == "fail" && <CircleX color="#D32F2F" />}
                   <ToastTitle className="my-auto">{title}</ToastTitle>
                 </div>
               )}
