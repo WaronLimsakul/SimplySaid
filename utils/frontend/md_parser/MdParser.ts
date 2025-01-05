@@ -8,8 +8,8 @@ const defaultRules: Rule[] = [
         new Pattern(/^#{5}\s?([^\n]+)/gm, "<h5 class='text-xl'>$1</h5>"),
         new Pattern(/^#{4}\s?([^\n]+)/gm, "<h4 class='text-2xl'>$1</h4>"),
         new Pattern(/^#{3}\s?([^\n]+)/gm, "<h3 class='text-3xl'>$1</h3>"),
-        new Pattern(/^#{2}\s?([^\n]+)/gm, "<h2 class='text-4xl '>$1</h2>"),
-        new Pattern(/^#{1}\s?([^\n]+)/gm, '<h1 class="text-5xl ">$1</h1>'),
+        new Pattern(/^#{2}\s?([^\n]+)/gm, "<h2 class='text-4xl'>$1</h2>"),
+        new Pattern(/^#{1}\s?([^\n]+)/gm, "<h1 class='text-5xl'>$1</h1>"),
     ]),
     new Rule("bold", [
         new Pattern(/\*\*\s?([^\n]+)\*\*/g, "<b>$1</b>"),
