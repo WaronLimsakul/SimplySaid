@@ -12,10 +12,13 @@ const defaultRules: Rule[] = [
   new Rule("horizontal rule", [new Pattern(/^-{3,}|^\_{3,}/gm, "<hr />")]),
   new Rule("code", [
     new Pattern(
+      /``(.*?)``/gm,
+      "<code class='bg-zinc-300 text-destructive'>$1</code>",
+    ),
+    new Pattern(
       /`(.*?)`/gm,
       "<code class='bg-zinc-300 text-destructive'>$1</code>",
     ),
-    new Pattern(/``(.*?)``/gm, "<code class='bg-zinc-300'>$1</code>"),
   ]),
   new Rule("unorderd list", [
     new Pattern(
@@ -34,6 +37,7 @@ const defaultRules: Rule[] = [
   new Rule("bold italic", [
     new Pattern(/\*\*\*(.*)\*\*\*/gm, "<b><i>$1</i></b>"),
   ]),
+
   new Rule("bold", [
     new Pattern(/\*\*\s?([^\n]+)\*\*/g, "<b>$1</b>"),
     new Pattern(/\_\_\s?([^\n]+)\_\_/g, "<b>$1</b>"),
@@ -42,17 +46,16 @@ const defaultRules: Rule[] = [
     new Pattern(/\*\s?([^\n]+)\*/g, "<i>$1</i>"),
     new Pattern(/\_\s?([^\n]+)\_/g, "<i>$1</i>"),
   ]),
+  new Rule("delete", [new Pattern(/~~(.*)~~/gm, "<del>$1</del>")]),
   new Rule("image", [
     new Pattern(/\!\[([^\]]+)\]\((\S+)\)/g, '<img src="$2" alt="$1" />'),
   ]),
   new Rule("link", [
     new Pattern(
       /\[([^\n]+)\]\(([^\n]+)\)/g,
-      '<a href="$2" target="_blank" rel="noopener" class="text-primary">$1</a>',
+      '<a href="$2" target="_blank" rel="noopener" class="text-primary hover:underline">$1</a>',
     ),
   ]),
-
-  // Don't see any necessity to have <p> parser.
 
   // new Rule("paragraph", [new Pattern(/([^\n]+\n?)/g, "\n<p>$1</p>\n")]),
 ];
