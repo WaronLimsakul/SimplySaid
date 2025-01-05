@@ -21,7 +21,7 @@ const page = () => {
             {"<-- Back to main page"}
           </Link>
         </Button>
-        <Card className="h-[90%]">
+        <Card className="min-h-[90%]">
           <CardHeader>
             <CardTitle className="text-xl">
               Let&apos;s hone our understanding!
@@ -31,7 +31,7 @@ const page = () => {
               how much you know (and don&apos;t know)!
             </CardDescription>
           </CardHeader>
-          <CardContent className="h-[70%]">
+          <CardContent className="min-h-full">
             <WritingPostArea />
           </CardContent>
           <CardFooter className="justify-end">

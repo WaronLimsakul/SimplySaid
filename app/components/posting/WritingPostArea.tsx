@@ -5,20 +5,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { MdParser } from "@/utils/frontend/md_parser/MdParser";
 import React, { useState } from "react";
 import DOMPurify from "dompurify";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription } from "@/components/ui/card";
 
 const WritingPostArea = () => {
   const [content, setContent] = useState("");
   const parser = new MdParser();
   return (
-    <div className="grid grid-cols-11 h-full">
-      <div className="col-span-5">
+    <div className="grid grid-cols-11 h-[60vh]">
+      <div className="col-span-11 md:col-span-5">
         <CardDescription>Write your explanation here:</CardDescription>
         <Textarea
           onChange={(e) => {
@@ -29,8 +23,11 @@ const WritingPostArea = () => {
           className="min-h-full"
         />
       </div>
-      <Separator orientation="vertical" className="mx-auto col-span-1 h-full" />
-      <div className="col-span-5">
+      <Separator
+        orientation="vertical"
+        className="mx-auto md:col-span-1 hidden md:block"
+      />
+      <div className="hidden md:col-span-5 md:block">
         <CardDescription> See your explanation preview here:</CardDescription>
         <Card className="min-h-full">
           <CardContent className="my-3 w-auto h-full">
