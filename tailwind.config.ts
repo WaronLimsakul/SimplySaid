@@ -6,7 +6,7 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  safelist: ["text-5xl"],
+  safelist: ["list-disc", "list-decimal", "ml-4"],
   theme: {
     extend: {
       colors: {

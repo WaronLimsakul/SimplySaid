@@ -33,7 +33,7 @@ const WritingPostArea = () => {
       <div className="col-span-5">
         <CardDescription> See your explanation preview here:</CardDescription>
         <Card className="min-h-full">
-          <CardContent className="mt-3">
+          <CardContent className="my-3 w-auto h-full">
             <div
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(parser.render(content)),

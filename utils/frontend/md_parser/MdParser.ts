@@ -9,6 +9,31 @@ const defaultRules: Rule[] = [
     new Pattern(/^#{2}\s?([^\n]+)/gm, "<h2 class='text-2xl'>$1</h2>"),
     new Pattern(/^#{1}\s?([^\n]+)/gm, "<h1 class='text-3xl'>$1</h1>"),
   ]),
+  new Rule("horizontal rule", [new Pattern(/^-{3,}|^\_{3,}/gm, "<hr />")]),
+  new Rule("code", [
+    new Pattern(
+      /`(.*?)`/gm,
+      "<code class='bg-zinc-300 text-destructive'>$1</code>",
+    ),
+    new Pattern(/``(.*?)``/gm, "<code class='bg-zinc-300'>$1</code>"),
+  ]),
+  new Rule("unorderd list", [
+    new Pattern(
+      /^[\*|+|-][ |.](.*)/gm,
+      "<ul class='list-disc ml-4 mb-2'><li>$1</li></ul>",
+    ),
+    new Pattern(/<\/ul\>\n<ul class='list-disc ml-4 mb-2'\>/g, "\n"),
+  ]),
+  new Rule("ordered list", [
+    new Pattern(
+      /^\d[ |.](.*)/gm,
+      "<ol class='list-decimal ml-4 mb-2'><li>$1</li></ol>",
+    ),
+    new Pattern(/<\/ol\>\n<ol class='list-decimal ml-4 mb-2'\>/g, "\n"),
+  ]),
+  new Rule("bold italic", [
+    new Pattern(/\*\*\*(.*)\*\*\*/gm, "<b><i>$1</i></b>"),
+  ]),
   new Rule("bold", [
     new Pattern(/\*\*\s?([^\n]+)\*\*/g, "<b>$1</b>"),
     new Pattern(/\_\_\s?([^\n]+)\_\_/g, "<b>$1</b>"),
@@ -23,10 +48,13 @@ const defaultRules: Rule[] = [
   new Rule("link", [
     new Pattern(
       /\[([^\n]+)\]\(([^\n]+)\)/g,
-      '<a href="$2" target="_blank" rel="noopener">$1</a>',
+      '<a href="$2" target="_blank" rel="noopener" class="text-primary">$1</a>',
     ),
   ]),
-  new Rule("paragraph", [new Pattern(/([^\n]+\n?)/g, "\n<p>$1</p>\n")]),
+
+  // Don't see any necessity to have <p> parser.
+
+  // new Rule("paragraph", [new Pattern(/([^\n]+\n?)/g, "\n<p>$1</p>\n")]),
 ];
 
 export class MdParser {
