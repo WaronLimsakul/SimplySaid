@@ -1,21 +1,58 @@
 "use client";
 
 import { CardContent, CardFooter } from "@/components/ui/card";
-import React, { useState } from "react";
+import React, { FormEventHandler, SetStateAction, useState } from "react";
 import WritingPostArea from "./WritingPostArea";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const PostingCardBody = () => {
+    const { toast } = useToast();
+    const router = useRouter();
     const [content, setContent] = useState("");
-    const handlePost = () => { };
+    const [title, setTitle] = useState("");
+    const [object, setObject] = useState("");
+    const [tags, setTags]: [
+        string[],
+        React.Dispatch<React.SetStateAction<string[]>>,
+    ] = useState([]);
+    const [posting, setPosting] = useState(false);
+
+    const handlePost: FormEventHandler<HTMLFormElement> = async (e) => {
+        e.preventDefault();
+        setPosting(true);
+        const result = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/post`, {
+            method: "POST",
+            body: JSON.stringify({ object: "", title: "", tags: [""], content }),
+        });
+
+        if (result.ok) {
+            toast({ title: "Posting Successful", symbol: "check" });
+            // may use server redirect. let's see.
+            router.push("/");
+        } else toast({ title: "Posting Fail, please try again", symbol: "fail" });
+
+        setPosting(false);
+    };
+
     return (
         <div>
             <CardContent>
-                <WritingPostArea content={content} setContent={setContent} />
+                <WritingPostArea
+                    content={content}
+                    setContent={setContent}
+                    title={title}
+                    setTitle={setTitle}
+                    object={object}
+                    setObject={setObject}
+                    tags={tags}
+                    setTags={setTags}
+                />
             </CardContent>
             <CardFooter className="justify-end">
                 <form onSubmit={handlePost}>
-                    <Button className="mt-2" type="submit">
+                    <Button disabled={posting} className="mt-2" type="submit">
                         Post
                     </Button>
                 </form>
