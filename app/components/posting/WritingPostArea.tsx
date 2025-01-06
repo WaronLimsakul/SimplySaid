@@ -7,6 +7,7 @@ import React from "react";
 import DOMPurify from "dompurify";
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import TagsInput from "./TagsInput";
 
 const WritingPostArea = ({
     content,
@@ -49,6 +50,10 @@ const WritingPostArea = ({
                             setTitle(e.target.value);
                         }}
                     />
+                </div>
+                <div className="grid grid-cols-9 items-center gap-2 mb-2">
+                    <p className="col-span-1 text-right">Tags: </p>
+                    <TagsInput tags={tags} setTags={setTags} />
                 </div>
                 <CardDescription>Write your explanation here:</CardDescription>
                 <Textarea

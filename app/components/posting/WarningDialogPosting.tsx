@@ -16,7 +16,7 @@ const WarningDialogPosting = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className="my-2" variant="link">
+                <Button className="my-2 text-lg" variant="link">
                     {"<-- Back to main page"}
                 </Button>
             </DialogTrigger>
