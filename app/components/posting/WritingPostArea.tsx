@@ -3,12 +3,17 @@
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { MdParser } from "@/utils/frontend/md_parser/MdParser";
-import React, { useState } from "react";
+import React from "react";
 import DOMPurify from "dompurify";
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
 
-const WritingPostArea = () => {
-    const [content, setContent] = useState("");
+const WritingPostArea = ({
+    content,
+    setContent,
+}: {
+    content: string;
+    setContent: React.Dispatch<React.SetStateAction<string>>;
+}) => {
     const parser = new MdParser();
     return (
         <div className="grid grid-cols-11 h-[60vh]">

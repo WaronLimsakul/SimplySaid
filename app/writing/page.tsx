@@ -1,15 +1,12 @@
 import {
     Card,
-    CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
 import React from "react";
-import WritingPostArea from "../components/posting/WritingPostArea";
-import { Button } from "@/components/ui/button";
 import WarningDialogPosting from "../components/posting/WarningDialogPosting";
+import PostingCardBody from "../components/posting/PostingCardBody";
 
 const page = () => {
     return (
@@ -27,15 +24,9 @@ const page = () => {
                             how much you know (and don&apos;t know)!
                         </CardDescription>
                     </CardHeader>
-                    <CardContent className="min-h-full">
-                        <WritingPostArea />
-                    </CardContent>
-                    <CardFooter className="justify-end">
-                        <Button className="mt-2">Publish</Button>
-                    </CardFooter>
+                    <PostingCardBody />
                 </Card>
             </div>
-
             <div className="col-span-1 " />
         </div>
     );
