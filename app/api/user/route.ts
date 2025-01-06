@@ -1,8 +1,18 @@
 import { db } from "@/lib/mongodb";
+import { NextRequest } from "next/server";
 
-// get all users
-export async function GET() {
-    const result = await db.collection("users").find().toArray();
+// For search by name only.
+export async function GET(req: NextRequest) {
+    const url = new URL(req.url);
+    const searchParams = url.searchParams;
+    const name = searchParams.get("name");
+
+    if (!name) return new Response("No name provided", { status: 400 });
+
+    const result = await db
+        .collection("users")
+        .findOne({ name }, { projection: { _id: 1 } });
     if (!result) return new Response("Internal server error", { status: 500 });
+
     return Response.json(result);
 }

@@ -6,15 +6,15 @@ import {
     DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
-import { LogOut, SquareUserRound } from "lucide-react";
+import { LogOut, SquareUserRound, UserSearch } from "lucide-react";
 import { Session } from "next-auth";
 import Link from "next/link";
 import React from "react";
+import UserSearchDialog from "./UserSearchDialog";
 
 const ProfileButton = ({ session }: { session: Session }) => {
     return (
@@ -40,6 +40,7 @@ const ProfileButton = ({ session }: { session: Session }) => {
                                 </DropdownMenuShortcut>
                             </DropdownMenuItem>
                         </Link>
+                        <UserSearchDialog />
                         <form
                             action={async () => {
                                 "use server";
