@@ -10,13 +10,19 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const filters = [
     { name: "Fuzzy Search (DIY)", value: "fuzzy" },
     { name: "Atlas Search", value: "atlas" },
-    { name: "Search by Topic", value: "object" },
-    { name: "Search by Tags", value: "tags" },
-    { name: "Search by UserID", value: "user_id" },
+    { name: "Topic (exact)", value: "object" },
+    { name: "Tags (exact)", value: "tags" },
+    { name: "UserID (exact)", value: "user_id" },
 ];
 
 // dev validate searchBy before searching.
@@ -33,13 +39,31 @@ const SearchBar = () => {
     // use "onValueChange" for handle state with <Select>
     // use "onChange" for normal <input>
     return (
-        <div className="flex w-full max-w-lg align-center justify-center">
+        <div className="flex w-full max-w-xl align-center justify-center">
             <Select onValueChange={setSearchBy}>
                 <SelectTrigger className="m-1 w-1/3 border-primary-foreground text-primary-foreground border-2">
-                    <SelectValue
-                        placeholder="Fuzzy Search (DIY)"
-                        defaultValue={"fuzzy"}
-                    ></SelectValue>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger>
+                                <SelectValue
+                                    placeholder="Fuzzy Search (DIY)"
+                                    defaultValue={"fuzzy"}
+                                ></SelectValue>
+                            </TooltipTrigger>
+                            <TooltipContent className="bg-zinc-200 text-zinc-900">
+                                <p>Select a method to search post</p>
+                                <p>
+                                    Read more on{" "}
+                                    <a
+                                        href="https://github.com/WaronLimsakul/SimplySaid"
+                                        className="text-red-700 text-bold italic"
+                                    >
+                                        doc
+                                    </a>
+                                </p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
                 </SelectTrigger>
                 <SelectContent>
                     {filters.map((filt) => (

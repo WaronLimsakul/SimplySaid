@@ -35,10 +35,10 @@ const UserCard = ({ user, signedIn }: { user: User; signedIn: boolean }) => {
                             <b>E-mail: </b> {user.email}
                         </p>
                         <p>
-                            <b>Posts: </b> {user.posts?.length} posts
+                            <b>Posts: </b> {user.posts?.length} post(s)
                         </p>
                         <p>
-                            <b>Votings: </b> {user.votes?.length} posts
+                            <b>Votings: </b> {user.votes?.length} post(s)
                         </p>
                     </div>
                 </div>
