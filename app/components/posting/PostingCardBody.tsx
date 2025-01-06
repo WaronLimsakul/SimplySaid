@@ -1,7 +1,7 @@
 "use client";
 
 import { CardContent, CardFooter } from "@/components/ui/card";
-import React, { FormEventHandler, SetStateAction, useState } from "react";
+import React, { FormEventHandler, useState } from "react";
 import WritingPostArea from "./WritingPostArea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -21,10 +21,14 @@ const PostingCardBody = () => {
 
     const handlePost: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
+        if (!content || !title || !tags || !object) {
+            toast({ title: "Please fill all the post detail", symbol: "fail" });
+            return;
+        }
         setPosting(true);
         const result = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/post`, {
             method: "POST",
-            body: JSON.stringify({ object: "", title: "", tags: [""], content }),
+            body: JSON.stringify({ post: { object, title, tags, content } }),
         });
 
         if (result.ok) {
