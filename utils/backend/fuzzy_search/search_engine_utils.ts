@@ -1,6 +1,8 @@
 import { db } from "@/lib/mongodb";
 import SearchEngine from "./search_engine";
-import { ObjectId } from "mongodb";
+import { ObjectId, WithId } from "mongodb";
+import Post from "@/lib/schema_design/post_type";
+import ExtendedPost from "@/lib/schema_design/ExtendedPost";
 
 const posts_coll = db.collection("posts");
 // fuzzy search engine.
@@ -13,7 +15,8 @@ const createSearchEngine = async () => {
         { projection: { content: 0, votes: 0 } },
     );
     for await (const post of allPostsCursor) {
-        newEngine.addPost(post);
+        type ExtendedPost = Post & WithId<Document>;
+        newEngine.addPost(post as ExtendedPost);
     }
     return newEngine;
 };
@@ -29,7 +32,7 @@ const updateSearchEngine = async (post_id: ObjectId) => {
     }
     const newPost = await posts_coll.findOne({ post_id: post_id });
     if (!newPost) return new Error("No new post found");
-    fuzzySearchEngine.addPost(newPost);
+    fuzzySearchEngine.addPost(newPost as ExtendedPost);
     return fuzzySearchEngine;
 };
 

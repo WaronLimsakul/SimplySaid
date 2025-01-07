@@ -1,5 +1,5 @@
 import { db } from "@/lib/mongodb";
-import { ObjectId } from "mongodb";
+import { ObjectId, UpdateFilter } from "mongodb";
 
 const users_coll = db.collection("users");
 
@@ -11,7 +11,7 @@ export async function deleteVoteFromUser(
     // this one return the found document of null
     const result = await users_coll.findOneAndUpdate(
         { _id: new ObjectId(user_id) },
-        { $pull: { votes: { post_id } } },
+        { $pull: { votes: { post_id } } as UpdateFilter<Document> },
         { returnDocument: "before", projection: { votes: 1 } },
     );
     if (!result) return new Error("Fail finding target post");
