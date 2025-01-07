@@ -3,16 +3,15 @@ import { NextRequest } from "next/server";
 
 // For search by name only.
 export async function GET(req: NextRequest) {
-    const url = new URL(req.url);
-    const searchParams = url.searchParams;
-    const name = searchParams.get("name");
+  const searchParams = req.nextUrl.searchParams;
+  const name = searchParams.get("name");
 
-    if (!name) return new Response("No name provided", { status: 400 });
+  if (!name) return new Response("No name provided", { status: 400 });
 
-    const result = await db
-        .collection("users")
-        .findOne({ name }, { projection: { _id: 1 } });
-    if (!result) return new Response("Internal server error", { status: 500 });
+  const result = await db
+    .collection("users")
+    .findOne({ name }, { projection: { _id: 1 } });
+  if (!result) return new Response("Internal server error", { status: 500 });
 
-    return Response.json(result);
+  return Response.json(result);
 }
