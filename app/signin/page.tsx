@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cookies } from "next/headers";
 import Image from "next/image";
 
 const page = async ({

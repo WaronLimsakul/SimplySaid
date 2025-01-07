@@ -12,7 +12,7 @@ const NoPostResult = () => {
           No Posts Found
         </AlertTitle>
         <AlertDescription>
-          We couldn't find any posts that match your search. Please try
+          We couldn&apos;t find any posts that match your search. Please try
           different keywords or filters.
         </AlertDescription>
       </Alert>

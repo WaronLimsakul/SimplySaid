@@ -26,7 +26,7 @@ export default function TermOfService() {
         - You retain ownership of the content you post but grant us a license to
         display it.
         <br />- Do not post content that is illegal, harmful, or violates
-        others' rights.
+        others&apos; rights.
       </p>
 
       <h2 className="text-2xl font-semibold mb-2">Termination</h2>
@@ -37,7 +37,7 @@ export default function TermOfService() {
 
       <h2 className="text-2xl font-semibold mb-2">Disclaimers and Liability</h2>
       <p className="mb-4">
-        - The app is provided "as is" without warranties of any kind.
+        - The app is provided &quot;as is&quot; without warranties of any kind.
         <br />- We are not liable for damages resulting from your use of the
         app.
       </p>
