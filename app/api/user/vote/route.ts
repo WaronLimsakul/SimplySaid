@@ -1,12 +1,15 @@
 import check_post_exists from "@/utils/backend/check_post_exist";
 import { db } from "@/lib/mongodb";
 import authorize_session from "@/utils/backend/check_authenticate";
-import { ObjectId } from "mongodb";
+import { Document, ObjectId } from "mongodb";
 import { NextRequest } from "next/server";
 
 const users_coll = db.collection("users");
 
 export async function POST(req: NextRequest) {
+    interface VoteInUserDoc extends Document {
+        votes?: { post_id: string; val: number };
+    }
     const authorized_result = await authorize_session(req);
     if (authorized_result instanceof Response) return authorized_result;
 
@@ -19,12 +22,13 @@ export async function POST(req: NextRequest) {
     const check_post_res = await check_post_exists(post_id);
     if (!check_post_res) return new Response("No post exists", { status: 400 });
 
+    const pushing_target: VoteInUserDoc = { votes: { post_id, val } };
     // $push check if there is a field, if not it insert that field with value.
     const result = await users_coll.updateOne(
         {
             _id: new ObjectId(user_id),
         },
-        { $push: { votes: { post_id, val } } },
+        { $push: pushing_target },
     );
 
     return Response.json(result);

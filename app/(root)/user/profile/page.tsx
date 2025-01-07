@@ -1,6 +1,7 @@
 import UserCard from "@/app/components/user/UserCard";
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
+import User from "@/lib/schema_design/user_type";
 import Link from "next/link";
 
 const page = async () => {
@@ -12,7 +13,7 @@ const page = async () => {
                 <Button className="mb-3 text-lg text-primary" variant="link">
                     <Link href="/">{"<-- Back to main page"}</Link>
                 </Button>
-                <UserCard user={session.user} signedIn={true} />
+                <UserCard user={session.user as User} signedIn={true} />
             </div>
         </div>
     );

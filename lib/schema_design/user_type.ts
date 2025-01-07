@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 
 // from user type
 type User = {
-    id: null | string | ObjectId;
+    id: string | ObjectId;
     name: string;
     email: string;
     image: string;

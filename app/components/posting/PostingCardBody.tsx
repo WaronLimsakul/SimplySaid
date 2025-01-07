@@ -16,7 +16,7 @@ const PostingCardBody = () => {
     const [tags, setTags]: [
         string[],
         React.Dispatch<React.SetStateAction<string[]>>,
-    ] = useState([]);
+    ] = useState<string[]>([]);
     const [posting, setPosting] = useState(false);
 
     const handlePost: FormEventHandler<HTMLFormElement> = async (e) => {

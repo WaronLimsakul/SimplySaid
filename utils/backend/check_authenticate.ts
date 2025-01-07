@@ -1,5 +1,6 @@
 import { db } from "@/lib/mongodb";
 import { Collection } from "mongodb";
+import { RequestCookies } from "next/dist/compiled/@edge-runtime/cookies";
 import { NextRequest } from "next/server";
 
 const sessions_coll: Collection = db.collection("sessions");
@@ -9,8 +10,10 @@ const sessions_coll: Collection = db.collection("sessions");
 export default async function authorize_session(
     req: NextRequest,
 ): Promise<Response | string> {
-    const _parsed: Map<string, { name: string; value: string }> =
-        req.cookies["_parsed"];
+    interface CustomRequestCookies extends RequestCookies {
+        _parsed: Map<string, { name: string; value: string }>;
+    }
+    const _parsed = (req.cookies as CustomRequestCookies)["_parsed"];
     if (_parsed.size === 0)
         return new Response("User not logged in", { status: 401 });
 
