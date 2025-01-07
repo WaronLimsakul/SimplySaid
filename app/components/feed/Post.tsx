@@ -7,6 +7,7 @@ import PostFooterGuest from "./post_components/PostFooterGuest";
 import { getSession } from "@/utils/frontend/get_session";
 import { Separator } from "@/components/ui/separator";
 import { MdParser } from "@/utils/frontend/md_parser/MdParser";
+import DOMPurify from "isomorphic-dompurify";
 
 // as long as I don't use client rendering, I can declare async to any component.
 const Post = async ({ post }: { post: Post }) => {
@@ -16,6 +17,7 @@ const Post = async ({ post }: { post: Post }) => {
     const user_image = user_data.image;
     const user_id = user_data.user_id;
     const mdParser = new MdParser();
+    // const sanitizedHTML = DOMPurify.sanitize(mdParser.render(content));
 
     // already cached
     const session = await getSession();
@@ -47,7 +49,9 @@ const Post = async ({ post }: { post: Post }) => {
                 <CardContent className="pt-3 pb-2">
                     {content && (
                         <div
-                            dangerouslySetInnerHTML={{ __html: mdParser.render(content) }}
+                            dangerouslySetInnerHTML={{
+                                __html: DOMPurify.sanitize(mdParser.render(content)),
+                            }}
                         />
                     )}
                 </CardContent>
