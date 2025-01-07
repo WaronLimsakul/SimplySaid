@@ -1,10 +1,10 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { CircleUser } from "lucide-react";
+import { CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
+import ClickablePostOwner from "./ClickablePostOwner";
 
 const PostHeader = ({
+  user_id,
   title,
   user_image,
   user_name,
@@ -20,15 +20,11 @@ const PostHeader = ({
   return (
     <CardHeader className="p-5 pb-3 md:p-5">
       <CardTitle className="text-xl">{title}</CardTitle>
-      <CardDescription className="flex justify-start content-center gap-2">
-        <Avatar className="h-7 w-auto max-w-7">
-          <AvatarImage src={user_image} />
-          <AvatarFallback>
-            <CircleUser />
-          </AvatarFallback>
-        </Avatar>
-        <p className="my-auto">{user_name}</p>
-      </CardDescription>
+      <ClickablePostOwner
+        user_id={user_id}
+        user_image={user_image}
+        user_name={user_name}
+      />
       <div className="flex justify-start gap-1">
         <Badge className="italic">{object}</Badge>
         {tags.map((tag) => (

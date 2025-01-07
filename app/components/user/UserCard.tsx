@@ -10,7 +10,6 @@ import {
 import { Separator } from "@/components/ui/separator";
 import User from "@/lib/schema_design/user_type";
 import { Telescope } from "lucide-react";
-import { Session } from "next-auth";
 import Link from "next/link";
 import React from "react";
 import EditProfileButton from "./EditProfileButton";
