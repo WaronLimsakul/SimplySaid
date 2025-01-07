@@ -17,7 +17,9 @@ export default async function authorize_session(
     if (_parsed.size === 0)
         return new Response("User not logged in", { status: 401 });
 
-    const session_token_obj = _parsed.get("authjs.session-token");
+    const session_token_obj =
+        _parsed.get("authjs.session-token") ||
+        _parsed.get("__Secure-authjs.session-token");
     if (!session_token_obj)
         return new Response("Error, no session token found", { status: 500 });
 
