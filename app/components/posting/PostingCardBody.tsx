@@ -33,7 +33,7 @@ const PostingCardBody = () => {
       // may use server redirect. let's see.
       router.push("/");
     } else {
-      const errorMessage = result.text;
+      const errorMessage = await result.text();
       toast({ title: `Posting Fail, Error:${errorMessage}`, symbol: "fail" });
     }
 
