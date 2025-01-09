@@ -26,16 +26,14 @@ SimplySaid is a platform for people to share and read simple explanation of any 
 At the search area of the navigation bar, User can search explanations posted in the main feed using many query words provided
 **(The search bar will be hidden in the small viewport, users can click the magnifying glass icon to open the searching dialog)**
 
-##### Query
-
-###### _Full text search (recommended)_
+##### _Full text search (recommended)_
 
 User can have typo and vaguely search what they want to search.
 
 - Fuzzy search : using DIY fuzzy search algorithm to match the expected word and rank post scores
 - Atlas search: using MongoDB Atlas' Atlas search to as a full text based search.
 
-###### _Exact search_
+##### _Exact search_
 
 User must define an exact type of fields in a post and exact words.
 
@@ -140,10 +138,10 @@ Users can write a list in order as shown below to present an ordered list.
 
 ##### Typography
 
-1. `\*\*\*text\*\*\*` = bold-italic
-2. `\*\*text\*\*` or `\_\_ text \_\_` = bold
-3. `\*text\*` or `\_ text \_` = italic
-4. `\~\~text\~\~` = deleted
+1. `***text***` = bold-italic
+2. `**text**` or `\_\_ text \_\_` = bold
+3. `*text*` or `\_ text \_` = italic
+4. `~~text~~` = deleted
 
 ##### Image
 
