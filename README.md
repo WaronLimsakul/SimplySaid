@@ -1,10 +1,24 @@
-# SimplySaid (v.1.0.0)
+# SimplySaid
 
-## Purpose
+This is SimplySaid, a new media platform for sharing and reading simple explanation of of any complicated topics!
 
-SimplySaid is a platform for people to share and read simple explanation of any complicated topics they find hard to understand.
+![Simply Said in Action](./public/SimplySaid1.mp4)
 
-## Technologies used
+## Motivation
+
+Richard Feynman famously said,
+
+> "If you want to master something, teach it. The more you teach, the better you learn. Teaching is a powerful tool to learning"
+
+SimplySaid takes this as a core concept of it. We encourage people who want to understand complicated topics to simply teach it to everyone, reflecting a feedback and exercise your understanding. As a result, people who do not understand will understand, and people who understand will understand _more_.
+
+## 🚀 Quick Start
+
+Navigate to [SimplySaid](https://simply-said.vercel.app/) and sign in to receive full experience!
+
+You can read and post as you want!.
+
+## ⚙️ Technologies used
 
 - Next.js as full-stack frame work.
 - MongoDB Atlas as database.
@@ -13,7 +27,7 @@ SimplySaid is a platform for people to share and read simple explanation of any 
 - TailwindCSS for styling
 - ShadCNui as designed components
 
-## Features
+## 📖 Usage
 
 ### Authentication
 
@@ -118,22 +132,21 @@ Users can write `` `<text>` `` or ` ``<text>`` ` to wrap a text as an inline cod
 
 Users can write as below to represent a bullet point list.
 
-```
+```md
 - l1
 - l2
-...
-
+  ...
 ```
 
 ##### Ordered list
 
 Users can write a list in order as shown below to present an ordered list.
 
-```
+```md
 1. text
 2. text
 3. text
-....
+   ....
 ```
 
 ##### Typography
@@ -155,9 +168,15 @@ Users can write `[text](href)` to show a hyper text.
 
 At the top of the application, users can click the application's logo in order to navigating to main page.
 
-## Contribution
+## 🤝 Contributing
 
-- This is my personal project. Any contribution is welcome.
+I would love your help. Please clone the repo and submit a pull request to the `main` branch.
+
+### To install dependencies
+
+```bash
+npm install
+```
 
 ## License
 
