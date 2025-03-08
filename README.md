@@ -2,7 +2,7 @@
 
 This is SimplySaid, a new media platform for sharing and reading simple explanation of of any complicated topics!
 
-![Simply Said in Action](./public/SimplySaid1.mp4)
+![Simply Said in Action](https://github.com/user-attachments/assets/148ce297-cd67-4061-9a64-06267b2d9d96)
 
 ## Motivation
 
@@ -118,7 +118,7 @@ On the right side (or below in a smaller viewport) of the textarea input for the
 
 ##### Heading
 
-Users can write `# `/`## `/`### `/`#### ` as a `<h1>`, `<h2>` and `<h3>` text in order
+Users can write `# `/`## `/`### `/`#### ` as a `<h1>`, `<h2>`, `<h3>` and `<h4>` text in order
 
 ##### Horizontal rule
 
