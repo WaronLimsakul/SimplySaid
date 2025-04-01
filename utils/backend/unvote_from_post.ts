@@ -9,12 +9,12 @@ export async function unVoteFromPost(post_id: string, prev_val: number) {
   if (prev_val == 1)
     result = await posts_coll.updateOne(
       { _id: new ObjectId(post_id) },
-      { $inc: { "vote.0": -1 } },
+      { $inc: { "votes.0": -1 } },
     );
   else
     result = await posts_coll.updateOne(
       { _id: new ObjectId(post_id) },
-      { $inc: { "vote.1": 1 } },
+      { $inc: { "votes.1": 1 } },
     );
 
   if (!result.acknowledged || result.modifiedCount == 0) return false;
