@@ -61,6 +61,7 @@ class SearchEngine {
         return closestW;
     }
 
+
     tokenize(str: string) {
         return str
             .toLowerCase()

@@ -37,7 +37,7 @@ const WarningDialogPosting = () => {
                         </Link>
                     </Button>
                     <DialogClose asChild>
-                        <Button variant="outline">Cancle</Button>
+                        <Button variant="outline">Cancel</Button>
                     </DialogClose>
                 </DialogFooter>
             </DialogContent>
